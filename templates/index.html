@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>House Price Prediction</h1>
+        <form action="/predict" method="POST">
+            {% for feature, label in features.items() %}
+            <div class="form-group">
+                <label>{{ label }}:</label>
+                {% if feature == 'CentralAir' %}
+                    <select name="{{ feature }}" required>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                {% else %}
+                    <input type="number" name="{{ feature }}" 
+                           step="any" required
+                           {% if 'Year' in feature %}min="1800" max="2023"{% endif %}
+                           {% if feature == 'OverallQual' %}min="1" max="10"{% endif %}>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit">Predict Price</button>
+        </form>
+    </div>
+</body>
+</html>

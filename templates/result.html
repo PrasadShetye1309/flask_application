@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <div class="result-box">
+            <h2>Estimated House Price:</h2>
+            <div class="prediction">{{ prediction }}</div>
+        </div>
+        <h3>Input Details:</h3>
+        <div class="input-details">
+            {% for feature, value in input_data.items() %}
+            <div class="detail-item">
+                <span>{{ features[feature] }}:</span>
+                <span>
+                    {% if feature == 'CentralAir' %}
+                        {{ 'Yes' if value == 1 else 'No' }}
+                    {% else %}
+                        {{ value|round(2) if value is float else value }}
+                    {% endif %}
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="/" class="button">New Prediction</a>
+    </div>
+</body>
+</html>

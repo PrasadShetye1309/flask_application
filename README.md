@@ -2,6 +2,8 @@
 
 This repository contains a Flask-based web application for predicting house prices using a machine learning model. The application takes various house features as input and predicts the estimated price.
 
+![Application Demo](demo-screenshot.png)
+
 ## Project Structure
 
 ```
